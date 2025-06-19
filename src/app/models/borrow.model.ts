@@ -5,16 +5,16 @@ const borrowSchema = new Schema<BorrowI>({
   book: {
     type: Schema.Types.ObjectId,
     ref: "Book",
-    required: true,
+    required: [true, 'give book id'],
   },
   quantity: { 
     type: Number, 
-    required: true, 
-    min: 1 
+    required: [true, 'please enter quantity'], 
+    min: [1, 'please give 1 or more positive number, you give {VALUE}'] 
   },
   dueDate: { 
     type: Date, 
-    required: true 
+    required: [true, 'give return date'] 
   },
 },
 {
@@ -23,4 +23,4 @@ const borrowSchema = new Schema<BorrowI>({
 }
 );
 
-const Borrow = model('Borrow', borrowSchema);
+export const Borrow = model('Borrow', borrowSchema);

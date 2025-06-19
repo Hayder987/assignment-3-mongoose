@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express'
 import cors from 'cors';
 import { bookRouter } from './app/controllers/book.controller';
+import { borrowRouter } from './app/controllers/borrow.controller';
 
 const app:Application = express();
 
@@ -10,7 +11,7 @@ app.use(express.json());
 
 // api routes
 app.use('/api/books', bookRouter);
-
+app.use('/api/borrow', borrowRouter);
 
 // Root route
 app.get('/', (req:Request, res:Response)=>{
