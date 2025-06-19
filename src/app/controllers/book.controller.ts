@@ -17,8 +17,8 @@ bookRouter.post("/", async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     res.status(400).json({
-      message: error.message,
       success: false,
+      message: error.message,
       error,
     });
   }
@@ -47,7 +47,7 @@ bookRouter.get("/", async (req: Request, res: Response) => {
     res.status(404).json({
       success: false,
       message: "Failed to retrieve books",
-      error: error.message,
+      error,
     });
   }
 });
@@ -67,12 +67,12 @@ bookRouter.get("/:bookId", async (req: Request, res: Response) => {
     res.status(404).json({
       success: false,
       message: "Failed to retrieve books",
-      error: error.message,
+      error,
     });
   }
 });
 
-// update book
+// update book by id
 bookRouter.patch("/:bookId", async (req: Request, res: Response) => {
   try {
     const bookId = req.params.bookId;
@@ -87,8 +87,28 @@ bookRouter.patch("/:bookId", async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(404).json({
       success: false,
-      message: "Failed to update books",
-      error: error.message,
+      message: error.message,
+      error,
+    });
+  }
+});
+
+// delete book by id
+bookRouter.delete("/:bookId", async (req: Request, res: Response) => {
+  try {
+    const bookId = req.params.bookId;
+    const data = await Book.findByIdAndDelete(bookId);
+
+    res.status(200).json({
+      success: true,
+      message: "Books Delete successfully",
+      data: null,
+    });
+  } catch (error: any) {
+    res.status(404).json({
+      success: false,
+      message: error.message,
+      error,
     });
   }
 });
