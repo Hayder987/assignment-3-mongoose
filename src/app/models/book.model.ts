@@ -15,6 +15,7 @@ const bookSchema = new Schema<BookI>(
   genre: {
     type: String,
     required: [true, "genre is required"],
+    uppercase:true,
     enum: {
       values: [
         "FICTION",
@@ -40,7 +41,7 @@ const bookSchema = new Schema<BookI>(
   copies: {
     type: Number,
     required: [true, "Copies are required"],
-    min: [0, "Copies must be a non-negative number"],
+    min: [0, "Copies must be a positive number"],
   },
   available:{
     type: Boolean,
