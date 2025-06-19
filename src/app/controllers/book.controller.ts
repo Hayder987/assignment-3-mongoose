@@ -38,9 +38,9 @@ bookRouter.get("/", async (req: Request, res: Response) => {
       .limit(numberLimit);
 
     res.status(200).json({
-      success: true,
-      message: "Books retrieved successfully",
-      data,
+      success: data.length > 0 ? true : false,
+      message: data.length > 0 ? "Books retrieved successfully" : "No book Found",
+      data : data.length > 0 ? data : [],
     });
   } catch (error: any) {
     res.status(404).json({
