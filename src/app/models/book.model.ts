@@ -54,5 +54,11 @@ const bookSchema = new Schema<BookI>(
 }
 );
 
+// create a interface for available status update when copies getting 0
+bookSchema.methods.updateAvailability = async function () {
+  this.available = this.copies > 0;
+  await this.save();
+};
+
 // create book model
 export const Book = model("Book", bookSchema);

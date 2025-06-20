@@ -21,7 +21,12 @@ borrowRouter.post("/", async (req: Request, res: Response) => {
       { new: true } 
     );
 
-    // ensure actual copy available and found book then save data 
+    // if updated book not null update available status
+    if(updatedBook){
+      await updatedBook.updateAvailability();
+    }
+
+    // ensure actual copy available and updated Book not null then save data 
     let data;
     if(updatedBook){
        data = await Borrow.create(req.body)

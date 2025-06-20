@@ -10,6 +10,11 @@ bookRouter.post("/", async (req: Request, res: Response) => {
     const body = req.body;
     const data = await Book.create(body);
 
+     // manually set copies update available false if copies give zero
+    if(data){
+      await data.updateAvailability()
+    }
+
     res.status(201).json({
       success: true,
       message: "Book created successfully",
@@ -78,6 +83,11 @@ bookRouter.patch("/:bookId", async (req: Request, res: Response) => {
     const bookId = req.params.bookId;
     const body = req.body;
     const data = await Book.findByIdAndUpdate(bookId, body, { new: true });
+    
+    // update copies update available false if copies give zero
+    if(data){
+      await data.updateAvailability()
+    }
 
     res.status(200).json({
       success: true,

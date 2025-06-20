@@ -7,5 +7,6 @@ export interface BookI {
    isbn:string,
    description?:string,
    copies:number,
-   available:boolean
+   available:boolean,
+   updateAvailability(): Promise<this>;
 };
