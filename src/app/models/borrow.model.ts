@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
 import { BorrowI } from "../interfaces/borrow.interface";
+import { Book } from "./book.model";
 
 const borrowSchema = new Schema<BorrowI>({
   book: {
@@ -22,5 +23,6 @@ const borrowSchema = new Schema<BorrowI>({
     timestamps: true
 }
 );
+
 
 export const Borrow = model('Borrow', borrowSchema);

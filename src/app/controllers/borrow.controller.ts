@@ -1,17 +1,36 @@
 import express, { Request, Response } from "express";
 import { Borrow } from "../models/borrow.model";
+import { Book } from "../models/book.model";
 
 export const borrowRouter = express.Router();
 
 // post borrow data
 borrowRouter.post("/", async (req: Request, res: Response) => {
   try {
-    const body = req.body;
-    const data = await Borrow.create(body);
+    const { book, quantity, dueDate } = req.body;
+
+    // find book and update copies 
+    const updatedBook = await Book.findOneAndUpdate(
+      {
+        _id: book,
+        copies: { $gte: quantity } // ensure enough copies
+      },
+      {
+        $inc: { copies: -quantity } 
+      },
+      { new: true } 
+    );
+
+    // ensure actual copy available and found book then save data 
+    let data;
+    if(updatedBook){
+       data = await Borrow.create(req.body)
+    }
+
     res.status(201).json({
-      success: true,
-      message: "Book borrowed successfully",
-      data,
+      success: updatedBook?true:false,
+      message: updatedBook?"Book borrowed successfully":"Book not found or insufficient copies",
+      data:updatedBook?data:null
     });
   } catch (error: any) {
     res.status(400).json({
