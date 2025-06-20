@@ -52,7 +52,7 @@ bookRouter.get("/", async (req: Request, res: Response) => {
     res.status(404).json({
       success: false,
       message: "Failed to retrieve books",
-      error,
+      error:error?.message,
     });
   }
 });
