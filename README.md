@@ -42,6 +42,7 @@ cd assignment-3-mongoose
 
 npm install
 
+create .env file and add
 DB_USER=your mongodb user name
 DB_PASS=your mongodb password
 
@@ -60,7 +61,9 @@ npm run dev
 }
 
 
-### POST Borrow http://localhost:5000//api/borrow
+### POST Borrow 
+http://localhost:5000//api/borrow
+
 - body
 
   {
@@ -68,6 +71,15 @@ npm run dev
   "quantity": 2,
   "dueDate": "2025-07-18T00:00:00.000Z"
 }
+
+### get all Books 
+http://localhost:5000/api/books
+  
+### get allbooks with filter sort and limit
+http://localhost:5000/api/books?filter=FANTASY&sortBy=createdAt&sort=desc&limit=5
+
+### get all Borrowed Books Summary 
+http://localhost:5000/api/borrow
 
 
 
