@@ -8,7 +8,6 @@ const app:Application = express();
 // use express middleware
 app.use(cors());
 app.use(express.json());
-
 // api routes
 app.use('/api/books', bookRouter);
 app.use('/api/borrow', borrowRouter);

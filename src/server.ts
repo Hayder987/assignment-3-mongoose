@@ -7,7 +7,7 @@ const PORT = 5000;
 let server: Server;
 
 // main server running function
-async function main() {
+async function main() { 
   try {
     //  connect mongodb atlas
     await mongoose.connect(
