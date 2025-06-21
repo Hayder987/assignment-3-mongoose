@@ -50,12 +50,14 @@ borrowRouter.post("/", async (req: Request, res: Response) => {
 borrowRouter.get("/", async (req: Request, res: Response) => {
   try {
     const summary = await Borrow.aggregate([
+      // create a group by book id 
       {
         $group: {
           _id: "$book",
           totalQuantity: { $sum: "$quantity" },
         },
       },
+      // find data on books collection using _id
       {
         $lookup: {
           from: "books",
@@ -64,7 +66,9 @@ borrowRouter.get("/", async (req: Request, res: Response) => {
           as: "bookInfo",
         },
       },
+      // unwind bookinfo array
       { $unwind: "$bookInfo" },
+      // display totalQuantity, bookInfo.title, bookInfo.isbn
       {
         $project: {
           _id: 0,
