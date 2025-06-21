@@ -33,6 +33,15 @@ Make sure you have:
 
 ---
 
+---
+## Live Api Link
+### [link](https://libarary-db.vercel.app)
+
+## Video Explain Link
+### [drive](https://drive.google.com/file/d/1kQX3KicmWOAyCD3FSpbvnXHc6vAt2Txv/view)
+
+---
+
 ## 🚀 Getting Started (Local Development)
 
 ### 1️⃣ Clone the repository
