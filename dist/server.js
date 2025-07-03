@@ -13,10 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
-// import dotenv from 'dotenv';
 const mongoose_1 = __importDefault(require("mongoose"));
-const PORT = process.env.PORT || 5000;
-// dotenv.config();
+const PORT = 5000;
 let server;
 // main server running function
 function main() {

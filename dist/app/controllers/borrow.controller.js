@@ -55,12 +55,14 @@ exports.borrowRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, f
 exports.borrowRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const summary = yield borrow_model_1.Borrow.aggregate([
+            // create a group by book id 
             {
                 $group: {
                     _id: "$book",
                     totalQuantity: { $sum: "$quantity" },
                 },
             },
+            // find data on books collection using _id
             {
                 $lookup: {
                     from: "books",
@@ -69,7 +71,9 @@ exports.borrowRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, fu
                     as: "bookInfo",
                 },
             },
+            // unwind bookinfo array
             { $unwind: "$bookInfo" },
+            // display totalQuantity, bookInfo.title, bookInfo.isbn
             {
                 $project: {
                     _id: 0,
