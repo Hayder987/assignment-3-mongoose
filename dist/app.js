@@ -10,7 +10,7 @@ const borrow_controller_1 = require("./app/controllers/borrow.controller");
 const app = (0, express_1.default)();
 // use express middleware
 app.use((0, cors_1.default)({
-    origin: ['http://localhost:5173'],
+    origin: ["http://localhost:5173", "https://library-management-redux.vercel.app"],
     credentials: true
 }));
 app.use(express_1.default.json());

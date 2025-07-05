@@ -7,7 +7,7 @@ const app:Application = express();
 
 // use express middleware
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: ["http://localhost:5173", "https://library-management-redux.vercel.app"],
   credentials: true
 }));
 app.use(express.json());

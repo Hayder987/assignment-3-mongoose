@@ -8,7 +8,6 @@ export const borrowRouter = express.Router();
 borrowRouter.post("/", async (req: Request, res: Response) => {
   try {
     const { book, quantity, dueDate } = req.body;
-
     // find book and update copies 
     const updatedBook = await Book.findOneAndUpdate(
       {
